@@ -1,0 +1,13 @@
+.emailtext{
+    color: #898989;
+}
+
+.tablehead{
+    color: white;
+  text-align: center !important;
+    background-color: #3c76d2;
+}
+
+.sign{
+  border: 2px solid rgb(182, 176, 176);
+}
