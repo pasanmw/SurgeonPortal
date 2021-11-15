@@ -129,11 +129,10 @@ const Home = () => {
             <Card>
               <CardContent>
                 <Form>
+                 
                   <Row className="mb-3">
-                    <Form.Group as={Col} controlId="g">
-                      <h4>Search Patient: </h4>
-                    </Form.Group>
-                    <Inputform name="firstname" Label="Search by name " type="text" placeholder="Search by name " />
+                  
+                    <Inputform name="firstname" Label="Search Patient by name " type="text" placeholder="Search by name " />
                     <Form.Group as={Col} controlId="g">
                      
                     </Form.Group>
@@ -814,11 +813,223 @@ const Home = () => {
 
 
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} size="lg" onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Testing Model</Modal.Title>
           </Modal.Header>
-          <Modal.Body>!</Modal.Body>
+          <Modal.Body> <Row className="mb-3">
+                    <Inputform name="provisionaldiagnosis" Label="Provisional Diagnosis" type="text" placeholder="Enter Value" />
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col} controlId="g">
+                      <Form.Label as={Col} >Proposed Admission Date Time</Form.Label>
+                      <DateTimeForm Label="Date of Birth" type="datetime" />
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="g">
+                      <Form.Label as={Col} >Proposed Procedure Date Time</Form.Label>
+                      <DateTimeForm Label="Date of Birth" type="datetime" />
+                    </Form.Group>
+
+
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Inputform name="Estimated Length Of stay" Label="Estimated Length Of stay" type="text" placeholder="Enter Value" />
+
+                    <Form.Group as={Col} controlId="g">
+                      <Form.Label as={Col} > Type Of Admission</Form.Label>
+                      <Form.Check
+                        inline
+                        label="Day Stay"
+                        name="daystay"
+                        type="radio"
+                        id="one"
+                      />
+                      <Form.Check
+                        inline
+                        label="Overnight"
+                        name="Overnight"
+                        type="radio"
+                        id="two"
+                      />
+
+                    </Form.Group>
+
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col} controlId="g">
+                      <Form.Label as={Col} > HDU required Post-Op?</Form.Label>
+                      <Form.Check
+                        inline
+                        label="Yes"
+                        name="Yes"
+                        type="radio"
+                        id="one"
+                      />
+                      <Form.Check
+                        inline
+                        label="No"
+                        name="No"
+                        type="radio"
+                        id="two"
+                      />
+
+                    </Form.Group>
+
+
+                    <Inputform name="Estimated Operation Hours" Label="Estimated Operation Hours" type="text" placeholder="Enter Value" />
+                    <Inputform name="Estimated Operation Minutes" Label="Estimated Operation Minutes" type="text" placeholder="Enter Value" />
+
+
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col} controlId="g">
+                      <Form.Label as={Col} > ICU required Post-Op?</Form.Label>
+                      <Form.Check
+                        inline
+                        label="Yes"
+                        name="Yes"
+                        type="radio"
+                        id="one"
+                      />
+                      <Form.Check
+                        inline
+                        label="No"
+                        name="No"
+                        type="radio"
+                        id="two"
+                      />
+
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="g">
+                      <Form.Label as={Col} > Type of Anaesthetic</Form.Label>
+                      <Form.Check
+                        inline
+                        label="LA"
+                        name="LA"
+                        type="checkbox"
+                        id="one"
+                      />
+                      <Form.Check
+                        inline
+                        label="GA"
+                        name="GA"
+                        type="checkbox"
+                        id="two"
+                      />
+
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="g">
+                    </Form.Group>
+                  </Row>
+
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col} controlId="g">
+                      <Form.Label as={Col} > Pre Admission Clinic?</Form.Label>
+                      <Form.Check
+                        inline
+                        label="Yes"
+                        name="Yes"
+                        type="radio"
+                        id="one"
+                      />
+                      <Form.Check
+                        inline
+                        label="No"
+                        name="No"
+                        type="radio"
+                        id="two"
+                      />
+
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="g">
+                      <Alert variant="primary">
+                        *If the service is provided by the hospital
+
+                      </Alert>
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="g">
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col} controlId="g">
+                      <Form.Label as={Col} > Referrals Required?</Form.Label>
+                      <Form.Check
+                        inline
+                        label="Yes"
+                        name="Yes"
+                        type="radio"
+                        id="one"
+                      />
+                      <Form.Check
+                        inline
+                        label="No"
+                        name="No"
+                        type="radio"
+                        id="two"
+                      />
+
+                    </Form.Group>
+
+                    <Inputform name="plaesespecify" Label="Please Specify" type="text" placeholder="Enter Value" />
+                    <Form.Group as={Col} controlId="g">
+                    </Form.Group>
+
+                  </Row>
+
+                  <Row className="mb-3">
+
+
+                    <Inputform name="specialadmininstructions" Label="Special Admission Instructions" type="text" placeholder="Enter Value" />
+                    <Inputform name="pasthistory" Label="Past History" type="text" placeholder="Enter Value" />
+
+                  </Row>
+                  <Row className="mb-3">
+
+
+                    <Inputform name="allergies" Label="Allergies" type="text" placeholder="Enter Value" />
+                    <Inputform name="Currrntmedications" Label="Currrnt Medications" type="text" placeholder="Enter Value" />
+
+                  </Row>
+
+                  <Row className="mb-3">
+
+                    <Inputform name="weight" Label="Weight(kg)" type="text" placeholder="Enter Value" />
+                    <Inputform name="Height" Label="Height(cm)" type="text" placeholder="Enter Value" />
+                    <Inputform name="bmi" Label="BMI" type="text" placeholder="Enter Value" />
+
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col} controlId="g">
+                      <Form.Label as={Col} > Does this patient require Bariatric Equipment (BMI Less than 35 or Weight les than 120kg)?</Form.Label>
+                      <Form.Check
+                        inline
+                        label="Yes"
+                        name="Yes"
+                        type="radio"
+                        id="one"
+                      />
+                      <Form.Check
+                        inline
+                        label="No"
+                        name="No"
+                        type="radio"
+                        id="two"
+                      />
+
+                    </Form.Group>
+
+
+
+                  </Row></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
