@@ -1,208 +1,140 @@
-import React from 'react'
-import Layout from '../../components/layout'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import SaveIcon from '@mui/icons-material/Save';
- 
+import Typography from '@mui/material/Typography';
+import StepContent from '@mui/material/StepContent';
 
-import { Alert, Form, ButtonGroup, Navbar } from 'react-bootstrap';
-import { borderRadius } from '@mui/system';
+const steps = [
+  {
+    label: 'Select campaign settings',
+    description: `For each ad campaign that you create, you can control how much
+              you're willing to spend on clicks and conversions, which networks
+              and geographical locations you want your ads to show on, and more.`,
+  },
+  {
+    label: 'Create an ad group',
+    description:
+      'An ad group contains one or more ads which target a shared set of keywords.',
+  },
+  {
+    label: 'Create an ad',
+    description: `Try out different ad text to see what brings in the most customers,
+              and learn how to enhance your ads using features like ad extensions.
+              If you run into any problems with your ads, find out how to tell if
+              they're running and how to resolve approval issues.`,
+  },
+];
+export default function Formtest() {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(new Set());
 
+  const isStepOptional = (step) => {
+    return step === 1;
+  };
 
-const Form = () => {
+  const isStepSkipped = (step) => {
+    return skipped.has(step);
+  };
 
+  const handleNext = () => {
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped(newSkipped);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleSkip = () => {
+    if (!isStepOptional(activeStep)) {
+      // You probably want to guard against something like this,
+      // it should never occur unless someone's actively trying to break something.
+      throw new Error("You can't skip a step that isn't optional.");
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
+      const newSkipped = new Set(prevSkipped.values());
+      newSkipped.add(activeStep);
+      return newSkipped;
+    });
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
 
   return (
-    <>
-      <Layout />
+    <Box sx={{ width: '100%' }}>
+      <Stepper activeStep={activeStep}>
+        {steps.map((label, index) => {
+          const stepProps = {};
+          const labelProps = {};
+          if (isStepOptional(index)) {
+            labelProps.optional = (
+              <Typography variant="caption">Optional</Typography>
+            );
+          }
+          if (isStepSkipped(index)) {
+            stepProps.completed = false;
+          }
+          return (
+            <Step key={label.label} {...stepProps}>
+              <StepLabel {...labelProps}>{label.label} </StepLabel>
+              <StepContent>
+             {label.description}
+              </StepContent>
 
-      <Container style={{ paddingTop: "20px" }}>
-        <Card>
-          <CardContent>
-            <Row>
-
-
-              <Col>
-                <h4> Form Details</h4>  <Alert variant="primary">
-                  Personal Details!
-                </Alert>
-              </Col>
-            </Row>
-            <Row>
-              <Row className="justify-content-md-center">
-                <Form>
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      Title:
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Select aria-label="Default select example">
-                        <option>Select a value</option>
-                        <option value="1">Mr</option>
-                        <option value="2">Mrs</option>
-                        <option value="3">Miss</option>
-                      </Form.Select>
-                    </Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      First name:
-
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control required type="text" placeholder="  Please provide details" />
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      Surname:
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control type="text" placeholder="Please provide details" />
-
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      Preferred name:
-
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control type="text" placeholder="Please provide details" />
-
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      Date of birth:
-
-                    </Form.Label>
-                    <Col sm="2">
-                      <Form.Select aria-label="Default select example">
-                        <option>Date</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                      </Form.Select>
-
-                    </Col>
-                    <Col sm="2">
-                      <Form.Select aria-label="Default select example">
-                        <option>Month</option>
-                        <option value="1">JAN</option>
-                        <option value="2">FEB</option>
-                        <option value="3">MAR</option>
-                        <option value="4">APR</option>
-                      </Form.Select>
+            </Step>
 
 
-                    </Col>
-                    <Col sm="3">
-                      <Form.Select aria-label="Default select example">
-                        <option>Year</option>
-                        <option value="1">2021</option>
-                        <option value="2">2020</option>
-                        <option value="3">2019</option>
-                        <option value="4">2018</option>
-                        <option value="4">2017</option>
-                      </Form.Select>
+          );
+        })}
+      </Stepper>
+      {activeStep === steps.length ? (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>
+            All steps completed - you&apos;re finished
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Box sx={{ flex: '1 1 auto' }} />
+            <Button onClick={handleReset}>Reset</Button>
+          </Box>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Button
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              sx={{ mr: 1 }}
+            >
+              Back
+            </Button>
+            <Box sx={{ flex: '1 1 auto' }} />
+            {isStepOptional(activeStep) && (
+              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                Skip
+              </Button>
+            )}
 
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      Gender:
-
-                    </Form.Label>
-                    <Col sm="7">
-
-                    <div  style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                        <Button style={{ background: "#3c76d2" ,color:'white',width:'100%',borderRadius:'10px 0px 0px 10px'}}>Male</Button>
-                        <Button  style={{ background: "#e2e2e2" ,width:'100%'}}>Female</Button>
-                        <Button style={{ background: "#e2e2e2" ,width:'100%',borderRadius:'0px 10px 10px 0px'}}>Other</Button>
-
-                      </div>
-
-
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      Address:
-
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control type="text" placeholder="Etner your address here" />
-
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      Mobile number:
-
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control type="text" placeholder="XX XXX XXX" />
-
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      Phone number (H):
-
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control type="text" placeholder="XX XXX XXX" />
-
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      Phone number(W):
-
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control type="text" placeholder="XX XXX XXX" />
-
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row} className="mb-3 justify-content-md-center" controlId="formPlaintextEmail">
-                    <Form.Label column sm="3">
-                      E-mail
-
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control type="text" placeholder="myname@example.com" />
-
-                    </Col>
-                  </Form.Group>
-                </Form>
-              </Row>
-            </Row>
-
-
-
-          </CardContent>
-
-        </Card>
-
-
-      </Container>
-      <Navbar fixed="bottom" expand="lg" variant="light" bg="light">
-        <Container>
-          <Button variant="contained" startIcon={<SaveIcon />}>Save</Button>
-          <Button variant="contained" startIcon={<SaveIcon />}>Next</Button>
-           
-        </Container>
-      </Navbar>
-
-    </>
-  )
+            <Button onClick={handleNext}>
+              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            </Button>
+          </Box>
+        </React.Fragment>
+      )}
+    </Box>
+  );
 }
-
-export default Form

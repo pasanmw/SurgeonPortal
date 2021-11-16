@@ -15,7 +15,8 @@ export default function DateTimeForm(props) {
     const [value, setValue] = useState(new Date('2014-08-18T21:11:54'));
 
     const handleChange = (newValue) => {
-      setValue(newValue);
+     setValue(newValue);
+       props.value(newValue)
     };
   
     return (

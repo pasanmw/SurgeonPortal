@@ -15,12 +15,50 @@ import Inputform from '../../components/form/Inputform';
 import Table from 'react-bootstrap/Table';
 import SignaturePad from 'react-signature-pad-wrapper'
 import DateTimeForm from '../../components/form/DateTimeForm'
+import { fabClasses } from '@mui/material';
 const Home = () => {
   const [show, setShow] = useState(false);
-
+  const [nama,setNama] = useState("pasan");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
+  // newly created states form one 1
+  const[sex,setSex] = useState("");
+  const[birthdate,setBirthdate]= useState(new Date());
+
+  // newly created states form two 2 Admission Details
+  const[proposed_Admission_DateTime,setProposed_Admission_DateTime]= useState(new Date());
+  const[proposed_Procedure_DateTime,setProposed_Procedure_DateTime]= useState(new Date());
+  const[type_Of_Admission,setType_Of_Admission]= useState("");
+  const[postOp_HDU_Required,setPostOp_HDU_Required]= useState(false);
+  const[postOp_ICU_Required,setPostOp_ICU_Required]=useState(true);
+  const[pre_Admission_Clinic_Required,setPre_Admission_Clinic_Required]=useState(false);
+  const[referrals_Required,setReferrals_Required]=useState(false);
+  const[patient_BariatricEquipmentRequired,setPatient_BariatricEquipmentRequired]=useState(false);
+  
+  // newly created states form three 3  Specific pre operative instructions
+
+  const[anaesthetic_Consultation_Required,setAnaesthetic_Consultation_Required]=useState(false);
+  const[preadmission_assessment_Required,setPreadmission_assessment_Required]=useState(false);
+  const[pathology_tests_Required,setPathology_tests_Required]=useState(false);
+  const[investigations_Required,setInvestigations_Required]=useState(false);
+  const[operating_theatre_advised_Reauired,setOperating_theatre_advised_Reauired]=useState(false);
+  const[operating_theatre_advised_DateTime,setOperating_theatre_advised_DateTime]= useState(new Date());
+  const[specific_equipment_required,setSpecific_equipment_required]= useState(false);
+  const[mP_Sign_dateTime,setMP_Sign_dateTime]= useState(new Date());
+
+  
+  // form 4
+  const[laterality,setLaterality]= useState("");
+  const[mP_Signature_DateTime,setMP_Signature_DateTime]= useState(new Date());
+  const[interpreter_Required,setInterpreter_Required]= useState(false);
+  const[consent_To_Blood_Transfusion,setConsent_To_Blood_Transfusion]= useState(false);
+  const[patient_Sign_DateTime,setPatient_Sign_DateTime]= useState(new Date());
+
+  
+  
+  
   const data = {
     patients: [
       {
@@ -52,6 +90,110 @@ const Home = () => {
     ]
   };
 
+
+  const [postdata, setpostdata] = useState({
+    rfa_id: "",
+    doctor_id: "",
+    patient_id: "",
+    patient_Surname: "",
+    patient_GivenName: "",
+    patient_Title: "",
+    patient_DOB: new Date(),
+    patient_Sex: "",
+    patient_Address_Line_1: "",
+    patient_Address_Line_2: "",
+    patient_Suburb: "",
+    patient_Postcode: "",
+    patient_State: "",
+    patient_Phone_Home: "",
+    patient_Phone_Mobile: "",
+    patient_Phone_Bussines: "",
+    patient_Email: "",
+    provisional_Diagnosis: "",
+    proposed_Admission_DateTime: new Date(),
+    proposed_Procedure_DateTime: new Date(),
+    estimated_Days_of_Stay: "",
+    type_Of_Admission: "",
+    estimated_Operating_Hours: "",
+    estimated_Operating_Minutes: "",
+    postOp_HDU_Required: true,
+    postOp_ICU_Required: true,
+    anaesthesia_Type: "",
+    pre_Admission_Clinic_Required: true,
+    referrals_Required: true,
+    referrals_Details: "",
+    special_Admission_Instructions: "",
+    patients_Past_History: "",
+    patients_Allergies: "",
+    patients_Current_Medications: "",
+    patient_Weight: "",
+    patient_Height: "",
+    patient_BMI: "",
+    patient_BariatricEquipmentRequired: true,
+    anaesthetic_Consultation_Required: true,
+    anaesthetic_Consultation_Details: "",
+    preadmission_assessment_Required: true,
+    preadmission_assessment_Details: "",
+    pathology_tests_Required: true,
+    pathology_tests_Details: "",
+    investigations_Required: true,
+    investigations_Details: "",
+    operating_theatre_advised_Reauired: true,
+    operating_theatre_advised_DateTime:  new Date(),
+    drug_Orders_on_Admission: "string",
+    specific_equipment_required: true,
+    specific_equipment_Details: "",
+    mP_Sign: "",
+    mP_Sign_dateTime: new Date(),
+    doctor_Name: "",
+    agreed_Procedure_Description: "",
+    mbS_Item_Numbers: "",
+    laterality: "",
+    specific_Instructions: "",
+    mP_Name: "",
+    mP_Signature: "",
+    mP_Signature_DateTime: new Date(),
+    interpreter_Required:true,
+    interpreter_Language: "",
+    interpreter_Name: "",
+    interpreter_Sign: "",
+    interpreter_Sign_DateTime: new Date(),
+    consent_To_Blood_Transfusion: true,
+    patient_Sign: "",
+    patient_Sign_DateTime: new Date()
+  
+  })
+
+  const onChange=(name)=>(e)=>{
+      setpostdata({...postdata,[name]:e.target.value})
+  }
+
+  const submitform = () => {
+
+  console.log(postdata);
+  console.log(sex);
+  console.log(birthdate);
+  console.log(proposed_Admission_DateTime);
+  console.log(proposed_Procedure_DateTime);
+  console.log(type_Of_Admission);
+  console.log(postOp_HDU_Required);
+  console.log(postOp_ICU_Required);
+  console.log(pre_Admission_Clinic_Required);
+  console.log(referrals_Required);
+  console.log(patient_BariatricEquipmentRequired);
+  console.log(anaesthetic_Consultation_Required);
+  console.log(preadmission_assessment_Required);
+  console.log(pathology_tests_Required);
+  console.log(investigations_Required);
+  console.log(operating_theatre_advised_Reauired);
+  console.log(operating_theatre_advised_DateTime);
+  console.log(specific_equipment_required);
+  console.log(mP_Sign_dateTime);
+  
+
+  } 
+
+  
   return (
     <>
       <Layout />
@@ -61,7 +203,6 @@ const Home = () => {
           <CardContent>
 
             <Row>
-
               <Col>
                 <h4> eRFA and Consent</h4> <p className="emailtext">pomojiy434@bioharta.com</p>
               </Col>
@@ -87,7 +228,6 @@ const Home = () => {
                   {data.patients.map((data, index) => {
                     return (
                       <tr>
-
                         <td>{data.fname}</td>
                         <td>{data.lname}</td>
                         <td>{data.username}</td>
@@ -142,67 +282,73 @@ const Home = () => {
                     <Form.Group as={Col} controlId="g">
                       <Form.Label as={Col} > Title</Form.Label>
 
-                      <Form.Select aria-label="Default select example">
+                      <Form.Select aria-label="Default select example" value={postdata.patient_Title} onChange={onChange("patient_Title")}>
                         <option>Select a value</option>
-                        <option value="1">Mr</option>
-                        <option value="2">Mrs</option>
-                        <option value="3">Miss</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
                       </Form.Select>
 
                     </Form.Group>
 
-                    <Inputform name="firstname" Label="Firstname" type="text" placeholder="Enter Value" />
-                    <Inputform name="surname" Label="Surname" type="text" placeholder="Enter Value" />
+                    <Inputform name="patient_GivenName" Label="Firstname" type="text"  placeholder="Enter Value" value={postdata.patient_GivenName} onChange={onChange("patient_GivenName")}/>
+                    <Inputform name="patient_Surname" Label="Surname" type="text" placeholder="Enter Value" value={postdata.patient_Surname} onChange={onChange("patient_Surname")}  />
 
                   </Row>
 
                   <Row className="mb-3">
-                    <Inputform name="Addressline1" Label="Address Line 1" type="text" placeholder="Enter Value" />
+                    <Inputform name="patient_Address_Line_1" Label="Address Line 1" type="text" placeholder="Enter Value" value={postdata.patient_Address_Line_1} onChange={onChange("patient_Address_Line_1")}/>
                   </Row>
                   <Row className="mb-3">
-                    <Inputform name="Addressline2" Label="Address Line 2" type="text" placeholder="Enter Value" />
+                    <Inputform name="patient_Address_Line_2" Label="Address Line 2" type="text" placeholder="Enter Value" value={postdata.patient_Address_Line_2} onChange={onChange("patient_Address_Line_2")} />
                   </Row>
 
-
-                  <Row className="mb-3">
-
-                    <Inputform name="subrub" Label="Subrub" type="text" placeholder="Enter Value" />
-                    <Inputform name="state" Label="State" type="text" placeholder="Enter Value" />
-                    <Inputform name="postcode" Label="Postcode" type="text" placeholder="Enter Value" />
-                  </Row>
 
                   <Row className="mb-3">
 
-                    <Form.Group as={Col} controlId="g">
+                    <Inputform name="patient_Suburb" Label="Subrub" type="text" placeholder="Enter Value" value={postdata.patient_Suburb} onChange={onChange("patient_Suburb")}/>
+                    <Inputform name="patient_State" Label="State" type="text" placeholder="Enter Value" value={postdata.patient_State} onChange={onChange("patient_State")}/>
+                    <Inputform name="patient_Postcode" Label="Postcode" type="text" placeholder="Enter Value" value={postdata.patient_Postcode} onChange={onChange("patient_Postcode")} />
+                  </Row>
+
+                  <Row className="mb-3">
+
+                    <Form.Group as={Col} controlId="g"   >
                       <Form.Label as={Col} > Sex</Form.Label>
                       <Form.Check
                         inline
                         label="male"
-                        name="male"
+                        name="inputgender"
+                        value="male"
                         type="radio"
-                        id="one"
+                        id="a"
+                        onChange={(e) =>{ setSex(e.target.value)}}
                       />
                       <Form.Check
                         inline
                         label="Female"
-                        name="female"
+                        name="inputgender"
+                        value="female"
                         type="radio"
-                        id="one"
+                        id="a"
+                        onChange={(e) =>{ setSex(e.target.value)}}
                       />
                       <Form.Check
                         inline
                         label="Other"
-                        name="Other"
+                        name="inputgender"
+                        value="other"
                         type="radio"
-                        id="one"
+                        id="three"
+                        onChange={(e) =>{ setSex(e.target.value)}}
                       />
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="g">
                       <Form.Label as={Col} > Date of Birth</Form.Label>
-                      <DateTimeForm Label="Date of Birth" type="date" />
+                      <DateTimeForm Label="Date of Birth" type="date" name="birthdate" value={setBirthdate} />
                     </Form.Group>
-                    <Inputform name="email" Label="Email" type="text" placeholder="Enter Value" />
+                    <Inputform name="email" Label="Email" type="text" placeholder="Enter Value" value={postdata.patient_Email} onChange={onChange("patient_Email")} />
 
                   </Row>
 
@@ -213,7 +359,7 @@ const Home = () => {
                     <Form.Group as={Col} controlId="ddd">
                       <h4>Admission Details</h4>
                     </Form.Group>
-                    <Inputform name="email" Label="Search Favourite Admission" type="text" placeholder="Enter Value" />
+                    <Inputform name="patient_Email" Label="Search Favourite Admission" type="text" placeholder="Enter Value"  />
 
                     <Form.Group as={Col} controlId="btn">
 
@@ -223,41 +369,45 @@ const Home = () => {
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
-                    <Inputform name="provisionaldiagnosis" Label="Provisional Diagnosis" type="text" placeholder="Enter Value" />
+                    <Inputform name="provisionaldiagnosis" Label="Provisional Diagnosis" type="text" placeholder="Enter Value" value={postdata.patient_Email} onChange={onChange("patient_Email")}  />
                   </Row>
 
                   <Row className="mb-3">
                     <Form.Group as={Col} controlId="g">
                       <Form.Label as={Col} >Proposed Admission Date Time</Form.Label>
-                      <DateTimeForm Label="Date of Birth" type="datetime" />
+                      <DateTimeForm Label="Date of Birth" type="datetime"  name="proposed_Admission_DateTime" value={setProposed_Admission_DateTime}/>
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="g">
                       <Form.Label as={Col} >Proposed Procedure Date Time</Form.Label>
-                      <DateTimeForm Label="Date of Birth" type="datetime" />
+                      <DateTimeForm Label="Date of Birth" type="datetime" name="proposed_Procedure_DateTime" value={setProposed_Procedure_DateTime} />
                     </Form.Group>
 
 
                   </Row>
 
                   <Row className="mb-3">
-                    <Inputform name="Estimated Length Of stay" Label="Estimated Length Of stay" type="text" placeholder="Enter Value" />
+                    <Inputform name="estimated_Days_of_Stay" Label="Estimated Length Of stay" type="text" placeholder="Enter Value" value={postdata.estimated_Days_of_Stay} onChange={onChange("estimated_Days_of_Stay")}/>
 
                     <Form.Group as={Col} controlId="g">
                       <Form.Label as={Col} > Type Of Admission</Form.Label>
                       <Form.Check
                         inline
                         label="Day Stay"
-                        name="daystay"
+                        name="type_Of_Admission"
                         type="radio"
                         id="one"
+                        value="DayStay"
+                        onChange={(e) =>{ setType_Of_Admission(e.target.value)}}
                       />
                       <Form.Check
                         inline
                         label="Overnight"
-                        name="Overnight"
+                        name="type_Of_Admission"
                         type="radio"
+                        value="Overnight"
                         id="two"
+                        onChange={(e) =>{ setType_Of_Admission(e.target.value)}}
                       />
 
                     </Form.Group>
@@ -273,6 +423,8 @@ const Home = () => {
                         name="Yes"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setPostOp_HDU_Required(true)}}
                       />
                       <Form.Check
                         inline
@@ -280,13 +432,13 @@ const Home = () => {
                         name="No"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setPostOp_HDU_Required(false)}}
                       />
-
                     </Form.Group>
 
-
-                    <Inputform name="Estimated Operation Hours" Label="Estimated Operation Hours" type="text" placeholder="Enter Value" />
-                    <Inputform name="Estimated Operation Minutes" Label="Estimated Operation Minutes" type="text" placeholder="Enter Value" />
+                    <Inputform name="estimated_Operating_Hours" Label="Estimated Operation Hours" type="text" placeholder="Enter Value" value={postdata.estimated_Operating_Hours} onChange={onChange("estimated_Operating_Hours")} />
+                    <Inputform name="estimated_Operating_Minutes" Label="Estimated Operation Minutes" type="text" placeholder="Enter Value" value={postdata.estimated_Operating_Minutes} onChange={onChange("estimated_Operating_Minutes")}/>
 
 
                   </Row>
@@ -297,16 +449,21 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="Yes"
+                        name="icu"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{postOp_ICU_Required(true)}}                       
                       />
+
                       <Form.Check
                         inline
                         label="No"
-                        name="No"
+                        name="icu"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setPostOp_ICU_Required(false)}}
                       />
 
                     </Form.Group>
@@ -327,7 +484,7 @@ const Home = () => {
                         type="checkbox"
                         id="two"
                       />
-
+                 
                     </Form.Group>
                     <Form.Group as={Col} controlId="g">
                     </Form.Group>
@@ -340,16 +497,20 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="Yes"
+                        name="pre_Admission_Clinic_Required"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setPre_Admission_Clinic_Required(true)}}   
                       />
                       <Form.Check
                         inline
                         label="No"
-                        name="No"
+                        name="pre_Admission_Clinic_Required"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setPre_Admission_Clinic_Required(false)}}   
                       />
 
                     </Form.Group>
@@ -369,65 +530,76 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="Yes"
+                        name="Referrals_Required"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setReferrals_Required(true)}}   
                       />
                       <Form.Check
                         inline
                         label="No"
-                        name="No"
+                        name="Referrals_Required"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setReferrals_Required(false)}}   
                       />
 
                     </Form.Group>
+                    
+              { referrals_Required?  <Inputform name="plaesespecify" Label="Please Specify" type="text" placeholder="Enter Value"
+               value={postdata.referrals_Details} onChange={onChange("referrals_Details")}
+              /> : "" }
+                                     
+                        <Form.Group as={Col} controlId="g">
+                              </Form.Group>
+             
+                  </Row>
 
-                    <Inputform name="plaesespecify" Label="Please Specify" type="text" placeholder="Enter Value" />
-                    <Form.Group as={Col} controlId="g">
-                    </Form.Group>
+                  <Row className="mb-3">
+
+                  
+                    <Inputform name="specialadmininstructions" Label="Special Admission Instructions" type="text" placeholder="Enter Value"  value={postdata.special_Admission_Instructions} onChange={onChange("special_Admission_Instructions")}/>
+                    <Inputform name="pasthistory" Label="Past History" type="text" placeholder="Enter Value"  value={postdata.patients_Past_History} onChange={onChange("patients_Past_History")} />
+
+                  </Row>
+                  <Row className="mb-3">
+
+
+                    <Inputform name="allergies" Label="Allergies" type="text" placeholder="Enter Value" value={postdata.patients_Allergies} onChange={onChange("patients_Allergies")} />
+                    <Inputform name="Currrntmedications" Label="Currrnt Medications" type="text" placeholder="Enter Value" value={postdata.patients_Current_Medications} onChange={onChange("patients_Current_Medications")} />
 
                   </Row>
 
                   <Row className="mb-3">
 
-
-                    <Inputform name="specialadmininstructions" Label="Special Admission Instructions" type="text" placeholder="Enter Value" />
-                    <Inputform name="pasthistory" Label="Past History" type="text" placeholder="Enter Value" />
-
-                  </Row>
-                  <Row className="mb-3">
-
-
-                    <Inputform name="allergies" Label="Allergies" type="text" placeholder="Enter Value" />
-                    <Inputform name="Currrntmedications" Label="Currrnt Medications" type="text" placeholder="Enter Value" />
+                    <Inputform name="weight" Label="Weight(kg)" type="text" placeholder="Enter Value" value={postdata.patient_Weight} onChange={onChange("patient_Weight")} />
+                    <Inputform name="Height" Label="Height(cm)" type="text" placeholder="Enter Value" value={postdata.patient_Height} onChange={onChange("patient_Height")} />
+                    <Inputform name="bmi" Label="BMI" type="text" placeholder="Enter Value" value={postdata.patient_BMI} onChange={onChange("patient_BMI")} />
 
                   </Row>
-
-                  <Row className="mb-3">
-
-                    <Inputform name="weight" Label="Weight(kg)" type="text" placeholder="Enter Value" />
-                    <Inputform name="Height" Label="Height(cm)" type="text" placeholder="Enter Value" />
-                    <Inputform name="bmi" Label="BMI" type="text" placeholder="Enter Value" />
-
-                  </Row>
-
+                  
                   <Row className="mb-3">
                     <Form.Group as={Col} controlId="g">
                       <Form.Label as={Col} > Does this patient require Bariatric Equipment (BMI Less than 35 or Weight les than 120kg)?</Form.Label>
                       <Form.Check
                         inline
                         label="Yes"
-                        name="Yes"
+                        name="patient_BariatricEquipmentRequired"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setPatient_BariatricEquipmentRequired(true)}}   
                       />
                       <Form.Check
                         inline
                         label="No"
-                        name="No"
+                        name="patient_BariatricEquipmentRequired"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setPatient_BariatricEquipmentRequired(false)}}   
                       />
 
                     </Form.Group>
@@ -460,21 +632,31 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="Yes"
+                        name="anaesthetic_Consultation_Required"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setAnaesthetic_Consultation_Required(true)}}   
+                        
                       />
+
                       <Form.Check
                         inline
                         label="No"
-                        name="No"
+                        name="anaesthetic_Consultation_Required"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setAnaesthetic_Consultation_Required(false)}}   
                       />
 
                     </Form.Group>
 
-                    <Inputform name="plaesespecify" Label="Please Specify" type="text" placeholder="Enter Value" />
+           
+                    { anaesthetic_Consultation_Required?  <Inputform name="plaesespecify" Label="Please Specify" type="text" placeholder="Enter Value"
+               value={postdata.anaesthetic_Consultation_Details} onChange={onChange("anaesthetic_Consultation_Details")}
+              /> : "" }
+                    
                     <Form.Group as={Col} controlId="g">
                     </Form.Group>
 
@@ -487,17 +669,28 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="Yes"
+                        name="preadmission_assessment_Required"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setPreadmission_assessment_Required(true)}}  
                       />
                       <Form.Check
                         inline
                         label="No"
-                        name="No"
+                        name="preadmission_assessment_Required"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setPreadmission_assessment_Required(false)}}  
                       />
+                    </Form.Group>
+
+                    { preadmission_assessment_Required?  <Inputform name="preadmission_assessment_Details" Label="Please Specify" type="text" placeholder="Enter Value"
+               value={postdata.preadmission_assessment_Details} onChange={onChange("preadmission_assessment_Details")}
+              /> : "" }
+                    
+                    <Form.Group as={Col} controlId="g">
                     </Form.Group>
 
                   </Row>
@@ -508,21 +701,28 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="Yes"
+                        name="pathology_tests_Required"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setPathology_tests_Required(true)}}  
                       />
                       <Form.Check
                         inline
                         label="No"
-                        name="No"
+                        name="pathology_tests_Required"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setPathology_tests_Required(false)}}  
                       />
 
                     </Form.Group>
 
-                    <Inputform name="plaesespecify" Label="Please Specify" type="text" placeholder="Enter Value" />
+                    { pathology_tests_Required?  <Inputform name="pathology_tests_Details" Label="Please Specify" type="text" placeholder="Enter Value"
+               value={postdata.pathology_tests_Details} onChange={onChange("pathology_tests_Details")}
+              /> : "" }
+                      
                     <Form.Group as={Col} controlId="g">
                     </Form.Group>
 
@@ -534,21 +734,30 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="Yes"
+                        name="investigations_Required"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setInvestigations_Required(true)}} 
                       />
                       <Form.Check
                         inline
                         label="No"
-                        name="No"
+                        name="investigations_Required"
                         type="radio"
                         id="two"
+                        value="true"
+                        onChange={(e) =>{setInvestigations_Required(false)}} 
                       />
 
                     </Form.Group>
 
-                    <Inputform name="plaesespecify" Label="Please Specify" type="text" placeholder="Enter Value" />
+                    
+                    { investigations_Required?   <Inputform name="investigations_Details" Label="Please Specify" type="text" placeholder="Enter Value" 
+               value={postdata.investigations_Details} onChange={onChange("investigations_Details")}
+              /> : "" }
+
+                   
                     <Form.Group as={Col} controlId="g">
                     </Form.Group>
 
@@ -560,32 +769,39 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="Yes"
+                        name="operating_theatre_advised_Reauired"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setOperating_theatre_advised_Reauired(true)}} 
                       />
                       <Form.Check
                         inline
                         label="No"
-                        name="No"
+                        name="operating_theatre_advised_Reauired"
                         type="radio"
                         id="two"
+                        value="true"
+                        onChange={(e) =>{setOperating_theatre_advised_Reauired(false)}} 
                       />
 
                     </Form.Group>
+                        
 
-                    <Form.Group as={Col} controlId="g">
+                    { operating_theatre_advised_Reauired?   <> <Form.Group as={Col} controlId="g">
                       <Form.Label as={Col} >Adviced date/ Time</Form.Label>
-                      <DateTimeForm Label="Date of Birth" type="datetime" />
+                      <DateTimeForm Label="Date of Birth" type="datetime" name="operating_theatre_advised_DateTime" value={setOperating_theatre_advised_DateTime} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="g">
-                    </Form.Group>
+                    </Form.Group> </> : "" }
+
+                   
 
                   </Row>
 
                   <Row className="mb-3">
 
-                    <Inputform name="plaesespecify" Label="Drug Orders On Admission (If possible please attavh drug chart or detail below)" type="text" placeholder="Enter Value" />
+                    <Inputform name="plaesespecify" Label="Drug Orders On Admission (If possible please attavh drug chart or detail below)" type="text" placeholder="Enter Value" value={postdata.drug_Orders_on_Admission} onChange={onChange("drug_Orders_on_Admission")} />
                     <Form.Group as={Col} controlId="g">
                     </Form.Group>
 
@@ -597,19 +813,29 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="Yes"
+                        name="specific_equipment_required"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setSpecific_equipment_required(true)}} 
                       />
                       <Form.Check
                         inline
                         label="No"
-                        name="No"
+                        name="specific_equipment_required"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setSpecific_equipment_required(false)}} 
                       />
 
                     </Form.Group>
+                      
+                    { specific_equipment_required?   <Inputform name="investigations_Details" Label="Please Specify" type="text" placeholder="Enter Value" 
+               value={postdata.specific_equipment_Details} onChange={onChange("specific_equipment_Details")}
+              /> : "" }
+
+
 
                   </Row>
                   <Row className="mb-3">
@@ -619,11 +845,11 @@ const Home = () => {
 
 
                     </Form.Group>
-
+                    
 
                     <Form.Group as={Col} controlId="g">
                       <Form.Label as={Col} >Proposed Procedure Date Time</Form.Label>
-                      <DateTimeForm Label="Date of Birth" type="datetime" />
+                      <DateTimeForm Label="Date of Birth" type="datetime" name="mP_Sign_dateTime" value={setMP_Sign_dateTime} />
                     </Form.Group>
                   </Row>
 
@@ -642,8 +868,8 @@ const Home = () => {
 
                   </Row>
                   <Row className="mb-3" >
-
-                    <Inputform name="docname" type="text" placeholder="Enter value" />
+                  
+                    <Inputform name="doctor_Name" type="text" placeholder="Enter value" value={postdata.doctor_Name} onChange={onChange("doctor_Name")} />
                     <p>Have disscussed with</p>
 
                     <p>the nature of his / her present condition, the various ways of treating the patient's present condition and have explained the nature, purpose, likely results and the material risks of the following recommended procedure / treatment(s)</p>
@@ -653,13 +879,19 @@ const Home = () => {
 
                   </Row>
                   <Row className="mb-3" >
-
-                    <Inputform name="Provisionaldiagnosis" Label="Provisional Diagnosis" type="text" placeholder="Enter value" />
+                  
+                    <Inputform name="Provisionaldiagnosis" Label="Provisional Diagnosis" type="text" placeholder="Enter value" value={postdata.provisional_Diagnosis} onChange={onChange("provisional_Diagnosis")}/>
 
                   </Row>
+
+                  <Row className="mb-3" >
+                  
+                  <Inputform name="agreed_Procedure_Description" Label="The agreed operation/Procedure treatment is" type="text" placeholder="Enter value" value={postdata.agreed_Procedure_Description} onChange={onChange("agreed_Procedure_Description")}/>
+
+                </Row>
                   <Row className="mb-3" >
 
-                    <Inputform name="mbsitemnumbers" Label="MBS item numbers" type="text" placeholder="Enter value" />
+                    <Inputform name="mbS_Item_Numbers" Label="MBS item numbers" type="text" placeholder="Enter value" value={postdata.mbS_Item_Numbers} onChange={onChange("mbS_Item_Numbers")} />
 
                   </Row>
 
@@ -668,31 +900,37 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Left Side"
-                        name="left"
+                        name="laterality"
                         type="radio"
                         id="one"
+                        value="Left side"
+                        onChange={(e) =>{ setLaterality(e.target.value)}}
                       />
                       <Form.Check
                         inline
                         label="Right Side"
-                        name="right"
+                        name="laterality"
                         type="radio"
                         id="two"
+                        value="Right side"
+                        onChange={(e) =>{ setLaterality(e.target.value)}}
                       />
                       <Form.Check
                         inline
                         label="Not Applicable"
-                        name="not"
+                        name="laterality"
                         type="radio"
                         id="two"
+                        value="Not Applicable side"
+                        onChange={(e) =>{ setLaterality(e.target.value)}}
                       />
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
-                    <Inputform name="Provisionaldiagnosis" Label="Special Instructions" type="text" placeholder="Enter value" />
+                    <Inputform name="specific_Instructions" Label="Special Instructions" type="text" placeholder="Enter value" value={postdata.specific_Instructions} onChange={onChange("specific_Instructions")}  />
                   </Row>
                   <Row className="mb-3" >
-                    <Inputform name="mbsitemnumbers" Label="Medical Practitioner Name" type="text" placeholder="Enter value" />
+                    <Inputform name="mP_Name" Label="Medical Practitioner Name" type="text" placeholder="Enter value" value={postdata.mP_Name} onChange={onChange("mP_Name")}  />
                   </Row>
 
                   <Row className="mb-3">
@@ -706,7 +944,7 @@ const Home = () => {
 
                     <Form.Group as={Col} controlId="g">
                       <Form.Label as={Col} >Proposed Procedure Date Time</Form.Label>
-                      <DateTimeForm Label="Date of Birth" type="datetime" />
+                      <DateTimeForm Label="Date of Birth" type="datetime"  name="mP_Signature_DateTime" value={setMP_Signature_DateTime} />
                     </Form.Group>
 
                   </Row>
@@ -717,16 +955,20 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="left"
+                        name="interpreter_Required"
                         type="radio"
                         id="one"
+                        value="true"
+                        onChange={(e) =>{setInterpreter_Required(true)}}  
                       />
                       <Form.Check
                         inline
                         label="No"
-                        name="right"
+                        name="interpreter_Required"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setInterpreter_Required(false)}}  
                       />
 
                     </Form.Group>
@@ -760,16 +1002,21 @@ const Home = () => {
                       <Form.Check
                         inline
                         label="Yes"
-                        name="left"
+                        name="consent_To_Blood_Transfusion"
                         type="radio"
                         id="one"
+                        value="false"
+                        onChange={(e) =>{setConsent_To_Blood_Transfusion(true)}}  
                       />
+                      
                       <Form.Check
                         inline
                         label="No"
-                        name="right"
+                        name="consent_To_Blood_Transfusion"
                         type="radio"
                         id="two"
+                        value="false"
+                        onChange={(e) =>{setConsent_To_Blood_Transfusion(false)}}  
                       />
 
                     </Form.Group>
@@ -786,13 +1033,13 @@ const Home = () => {
 
                     <Form.Group as={Col} controlId="g">
                       <Form.Label as={Col} >Proposed Procedure Date Time</Form.Label>
-                      <DateTimeForm Label="Date of Birth" type="datetime" />
+                      <DateTimeForm Label="Date of Birth" type="datetime" name="patient_Sign_DateTime" value={setPatient_Sign_DateTime}/>
                     </Form.Group>
 
                   </Row>
 
-
-                  <Button variant="contained" type="submit">
+                
+                  <Button variant="contained"  onClick={submitform}>
                     Save
                   </Button>
                 </Form>
